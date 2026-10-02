@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreshCart — Fresh Groceries, Delivered Fast</title>
+  <meta name="description" content="Browse and order fresh groceries from FreshCart. Fruits, vegetables, dairy, bakery items and more delivered to your door." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <!-- ─── Header ─── -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo" id="logo-link" onclick="app.showHome()">
+        <span class="header__logo-icon">🛒</span>
+        <span class="header__logo-text">Fresh<span class="accent">Cart</span></span>
+      </a>
+
+      <div class="header__search" id="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" class="header__search-input" placeholder="Search groceries..." autocomplete="off" />
+      </div>
+
+      <nav class="header__actions">
+        <button class="header__btn" id="orders-btn" onclick="app.showOrders()" title="My Orders">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+          <span class="header__btn-label">Orders</span>
+        </button>
+        <button class="header__cart-btn" id="cart-btn" onclick="app.toggleCart()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── Hero ─── -->
+  <section class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">Fresh Groceries,<br/><span class="accent">Delivered Fast</span></h1>
+      <p class="hero__subtitle">Premium quality fruits, vegetables, dairy & more — all in one place.</p>
+      <button class="hero__cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Start Shopping</button>
+    </div>
+    <div class="hero__emojis">
+      <span class="hero__float" style="--i:0">🍎</span>
+      <span class="hero__float" style="--i:1">🥦</span>
+      <span class="hero__float" style="--i:2">🧀</span>
+      <span class="hero__float" style="--i:3">🍞</span>
+      <span class="hero__float" style="--i:4">🥤</span>
+      <span class="hero__float" style="--i:5">🍇</span>
+    </div>
+  </section>
+
+  <!-- ─── Categories ─── -->
+  <section class="categories" id="categories">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories__grid" id="categories-grid">
+        <!-- rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Products ─── -->
+  <section class="products" id="products">
+    <div class="container">
+      <div class="products__header">
+        <h2 class="section-title" id="products-title">All Products</h2>
+        <select class="products__sort" id="sort-select">
+          <option value="default">Sort by</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="name">Name: A → Z</option>
+        </select>
+      </div>
+      <div class="products__grid" id="products-grid">
+        <!-- rendered by JS -->
+      </div>
+      <div class="products__empty" id="products-empty" style="display:none;">
+        <span class="products__empty-emoji">🔍</span>
+        <p>No products found. Try a different search or category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Orders Section (hidden by default) ─── -->
+  <section class="orders-section" id="orders-section" style="display:none;">
+    <div class="container">
+      <div class="orders__header">
+        <button class="orders__back" onclick="app.showHome()">← Back to Shopping</button>
+        <h2 class="section-title">My Orders</h2>
+      </div>
+      <div id="orders-list" class="orders__list"></div>
+      <div class="orders__empty" id="orders-empty" style="display:none;">
+        <span class="orders__empty-emoji">📦</span>
+        <p>No orders yet. Start shopping to place your first order!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Cart Sidebar ─── -->
+  <div class="cart-overlay" id="cart-overlay" onclick="app.toggleCart()"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart__header">
+      <h2 class="cart__title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Your Cart
+      </h2>
+      <button class="cart__close" onclick="app.toggleCart()" id="cart-close" title="Close cart">✕</button>
+    </div>
+
+    <div class="cart__body" id="cart-body">
+      <div class="cart__empty" id="cart-empty">
+        <span>🛒</span>
+        <p>Your cart is empty</p>
+        <button class="btn btn--outline" onclick="app.toggleCart()">Browse Products</button>
+      </div>
+      <div class="cart__items" id="cart-items"></div>
+    </div>
+
+    <div class="cart__footer" id="cart-footer" style="display:none;">
+      <div class="cart__total">
+        <span>Total</span>
+        <span class="cart__total-value" id="cart-total">$0.00</span>
+      </div>
+      <button class="btn btn--primary btn--block" id="checkout-btn" onclick="app.showCheckout()">Proceed to Checkout</button>
+      <button class="btn btn--ghost btn--block" onclick="app.clearCart()">Clear Cart</button>
+    </div>
+  </aside>
+
+  <!-- ─── Checkout Modal ─── -->
+  <div class="modal-overlay" id="checkout-overlay" onclick="app.closeCheckout()"></div>
+  <div class="modal" id="checkout-modal">
+    <div class="modal__header">
+      <h2>Checkout</h2>
+      <button class="modal__close" onclick="app.closeCheckout()">✕</button>
+    </div>
+    <div class="modal__body">
+      <div class="checkout__summary" id="checkout-summary"></div>
+      <form class="checkout__form" id="checkout-form" onsubmit="return app.placeOrder(event)">
+        <h3>Delivery Details</h3>
+        <div class="form-group">
+          <label for="cust-name">Full Name *</label>
+          <input type="text" id="cust-name" required placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label for="cust-email">Email *</label>
+          <input type="email" id="cust-email" required placeholder="john@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="cust-phone">Phone</label>
+          <input type="tel" id="cust-phone" placeholder="+1 234 567 8900" />
+        </div>
+        <div class="form-group">
+          <label for="cust-address">Delivery Address *</label>
+          <textarea id="cust-address" required rows="3" placeholder="123 Main St, Apt 4B, City, State, ZIP"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--block" id="place-order-btn">
+          Place Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Order Success Modal ─── -->
+  <div class="modal-overlay" id="success-overlay" onclick="app.closeSuccess()"></div>
+  <div class="modal modal--success" id="success-modal">
+    <div class="success__content">
+      <div class="success__icon">✅</div>
+      <h2>Order Placed!</h2>
+      <p id="success-message">Your order has been confirmed.</p>
+      <p class="success__order-id" id="success-order-id"></p>
+      <div class="success__actions">
+        <button class="btn btn--primary" onclick="app.closeSuccess(); app.showOrders();">View Orders</button>
+        <button class="btn btn--outline" onclick="app.closeSuccess(); app.showHome();">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Toast Container ─── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ─── Footer ─── -->
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="header__logo-icon">🛒</span>
+        <span class="header__logo-text">Fresh<span class="accent">Cart</span></span>
+        <p class="footer__tagline">Fresh groceries, delivered fast.</p>
+      </div>
+      <div class="footer__links">
+        <div>
+          <h4>Shop</h4>
+          <a href="#" onclick="app.filterCategory('Fruits')">Fruits</a>
+          <a href="#" onclick="app.filterCategory('Vegetables')">Vegetables</a>
+          <a href="#" onclick="app.filterCategory('Dairy')">Dairy</a>
+        </div>
+        <div>
+          <h4>More</h4>
+          <a href="#" onclick="app.filterCategory('Bakery')">Bakery</a>
+          <a href="#" onclick="app.filterCategory('Beverages')">Beverages</a>
+          <a href="#" onclick="app.filterCategory('Snacks')">Snacks</a>
+        </div>
+      </div>
+      <p class="footer__copy">© 2026 FreshCart. Built with ❤️ by Agent Team.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

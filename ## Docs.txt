@@ -1,0 +1,25 @@
+## Docs
+
+- [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop.md): Understand the message lifecycle, tool execution, context window, and architecture that power your SDK agents.
+- [Use Claude Code features in the SDK](https://code.claude.com/docs/en/agent-sdk/claude-code-features.md): Load project instructions, skills, hooks, and other Claude Code features into your SDK agents.
+- [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking.md): Learn how to track token usage, deduplicate parallel tool calls, and calculate costs with the Claude Agent SDK.
+- [Give Claude custom tools](https://code.claude.com/docs/en/agent-sdk/custom-tools.md): Define custom tools with the Claude Agent SDK's in-process MCP server so Claude can call your functions, hit your APIs, and perform domain-specific operations.
+- [Rewind file changes with checkpointing](https://code.claude.com/docs/en/agent-sdk/file-checkpointing.md): Track file changes during agent sessions and restore files to any previous state
+- [Intercept and control agent behavior with hooks](https://code.claude.com/docs/en/agent-sdk/hooks.md): Intercept and customize agent behavior at key execution points with hooks
+- [Hosting the Agent SDK](https://code.claude.com/docs/en/agent-sdk/hosting.md): Deploy and host Claude Agent SDK in production environments
+- [Connect to external tools with MCP](https://code.claude.com/docs/en/agent-sdk/mcp.md): Configure MCP servers to extend your agent with external tools. Covers transport types, tool search for large tool sets, authentication, and error handling.
+- [Migrate to Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/migration-guide.md): Guide for migrating the Claude Code TypeScript and Python SDKs to the Claude Agent SDK
+- [Modifying system prompts](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts.md): Learn how to customize Claude's behavior by modifying system prompts using three approaches - output styles, systemPrompt with append, and custom system prompts.
+- [Observability with OpenTelemetry](https://code.claude.com/docs/en/agent-sdk/observability.md): Export traces, metrics, and events from the Agent SDK to your observability backend using OpenTelemetry.
+- [Agent SDK overview](https://code.claude.com/docs/en/agent-sdk/overview.md): Build production AI agents with Claude Code as a library
+- [Configure permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md): Control how your agent uses tools with permission modes, hooks, and declarative allow/deny rules.
+- [Plugins in the SDK](https://code.claude.com/docs/en/agent-sdk/plugins.md): Load custom plugins to extend Claude Code with commands, agents, skills, and hooks through the Agent SDK
+- [Agent SDK reference - Python](https://code.claude.com/docs/en/agent-sdk/python.md): Complete API reference for the Python Agent SDK, including all functions, types, and classes.
+- [Quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart.md): Get started with the Python or TypeScript Agent SDK to build AI agents that work autonomously
+- [Securely deploying AI agents](https://code.claude.com/docs/en/agent-sdk/secure-deployment.md): A guide to securing Claude Code and Agent SDK deployments with isolation, credential management, and network controls
+- [Work with sessions](https://code.claude.com/docs/en/agent-sdk/sessions.md): How sessions persist agent conversation history, and when to use continue, resume, and fork to return to a prior run.
+- [Agent Skills in the SDK](https://code.claude.com/docs/en/agent-sdk/skills.md): Extend Claude with specialized capabilities using Agent Skills in the Claude Agent SDK
+- [Slash Commands in the SDK](https://code.claude.com/docs/en/agent-sdk/slash-commands.md): Learn how to use slash commands to control Claude Code sessions through the SDK
+- [Stream responses in real-time](https://code.claude.com/docs/en/agent-sdk/streaming-output.md): Get real-time responses from the Agent SDK as text and tool calls stream in
+- [Streaming Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md): Understanding the two input modes for Claude Agent SDK and when to use each
+- [Get structured output from agents](https://code.claude.com/docs/en/agent-sdk/structured-outputs.md): Return validated JSON from agent workflows using JSON Schema, Zod, or Pydantic. Get type-safe, structured data after multi-turn tool use.
